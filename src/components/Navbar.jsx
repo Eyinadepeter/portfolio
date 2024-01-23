@@ -1,8 +1,8 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
 import { Link } from 'react-router-dom'
-import {Styles} from '../styles'
-import { NavLink } from 'react-router-dom'
+// import {Styles} from '../styles'
+import { navLinks } from '../constant'
 import {logo,menu,close} from '../assets'
 
 
@@ -18,9 +18,16 @@ const Navbar = () => {
             <img src={logo} alt="logo" className='w-9 h-9 object-contain' />
             <p className='text-white text-[18px] font-bold cursor-pointer flex'>Peter |<span className='sm:block hidden'>| Developer</span></p>
           </Link>
-            <ul >
-            {NavLink.map((link)=>(
-              <li>
+            <ul className='list-none hidden sm:flex flex-row gap-10'>
+            {navLinks.map((link)=>(
+              <li key={link.id}
+              className={`${
+                active === link.title
+                ? "text-white"
+                : "text-secondary"
+              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              onClick={() => setActive(link.title)}
+              >
                 <a href={`#${link.id}`}>{link.title}</a>
               </li>
             )
@@ -28,6 +35,10 @@ const Navbar = () => {
             )}
 
             </ul>
+            <div className='sm:hidden flex flex-1 justify-end items-center '>
+            
+
+            </div>
 
         </div>
     </nav>
